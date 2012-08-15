@@ -1,9 +1,7 @@
 saa-glossary
 ============
 
-This is project provides a scraper that crawls the SAA Glossary of Archival and
-Records Terminology and makes the resulting thesaurs data available as JSON
-and (soon) SKOS RDF.
+This project provides a scraper that crawls the [SAA Glossary of Archival and Records Terminology](https://github.com/edsu/saa-glossary) and makes the resulting thesaurus data available as JSON and (soon) SKOS RDF.
 
 If you want to update the data you'll need to:
 
