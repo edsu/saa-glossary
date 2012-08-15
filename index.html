@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="http://sigmajs.org/js/sigma.min.js"></script>
+        <script>
+            function setup() {
+                var g = sigma.init($('#sig')[0]);
+
+                g.graphProperties({
+                  minNodeSize: 1, 
+                  maxNodeSize: 10,
+                });
+
+                g.addNode('hello', {
+                  label: 'Hello'
+                }).addNode('world', {
+                  label: 'World!'
+                }).addEdge('hello_world', 'hello', 'world').draw();
+            }
+
+            $(document).ready(setup);
+        </script>
+        <style>
+            #sig {
+                height: 200px;
+                width: 400px;
+                border: thin solid gray;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='sig'></div>
+    </body>
+</html>
