@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import harvest
+import scrape
 import unittest
 
 class SaaTests(unittest.TestCase):
 
     def test_term(self):
-        term = harvest.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=294")
+        term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=294")
         self.assertEqual(term['pref_label'], 'arrangement')
         self.assertTrue(term['definition'].startswith('n. ~ 1. The process of organizing materials with respect to their provenance and original order, to protect their context and to achieve physical or intellectual control over the materials.'))
         self.assertEqual(len(term['notes']), 3)
@@ -29,7 +29,7 @@ class SaaTests(unittest.TestCase):
 
 
     def test_alt_label(self):
-        term = harvest.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=588")
+        term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=588")
         self.assertEqual(term['pref_label'], 'central records')
         self.assertEqual(term['definition'], u'n. ~ 1. The files of several organizational units consolidated in one location. \x96 2. The files of several individuals consolidated into a common filing system.')
         self.assertEqual(len(term['alt_label']), 2)
@@ -37,19 +37,19 @@ class SaaTests(unittest.TestCase):
         self.assertEqual(term['alt_label'][1], 'centralized files')
 
     def test_no_term(self):
-        term = harvest.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=11")
+        term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=11")
         self.assertEqual(term, None)
-        term = harvest.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=480")
+        term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=480")
         self.assertEqual(term, None)
 
     def test_abbreviation(self):
-        term = harvest.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=1907")
+        term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=1907")
         self.assertEqual(term['pref_label'], "American Library Association")
         self.assertEqual(len(term['alt_label']), 1)
         self.assertEqual(term['alt_label'][0], 'ALA')
 
     def test_another(self):
-        term = harvest.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=535")
+        term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=535")
         self.assertTrue(term)
         self.assertEqual(term['alt_label'][0], 'phonotape')
 
