@@ -62,7 +62,7 @@ def term(url):
             for note in p.getnext().findall('.//p'):
                 if note.text: term['notes'].append(note.text)
         if p.text.startswith("Citations"):
-            for cite in p.getnext().findall('.//p/a'):
+            for cite in p.getnext().findall('.//p'):
                 c = citation(cite)
                 if c: term['citations'].append(c)
 
@@ -89,7 +89,8 @@ def syndetic_links(doc, label, url):
     return links 
 
 def citation(cite):
-    url = urlparse.urljoin('http://www.archivists.org/glossary/', cite.attrib['href'])
+    a = cite.find('a')
+    url = urlparse.urljoin('http://www.archivists.org/glossary/', a.attrib['href'])
     doc = lxml.html.parse(url)
     dt = doc.find('.//dl/dt')
     if dt == None: return
