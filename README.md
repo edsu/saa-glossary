@@ -7,8 +7,8 @@ and (soon) SKOS RDF.
 
 If you want to update the data you'll need to:
 
-# sudo apt-get install pip
-# pip install -r requirements.txt
-# ./harvest.py
-# make some tea
-# cat saa-glossary.json
+1. sudo apt-get install pip
+1.pip install -r requirements.txt
+1. ./harvest.py
+1. make some tea
+1. cat saa-glossary.json
