@@ -96,7 +96,7 @@ def citation(cite):
     author = dt.text
     source = ' '.join([e.text_content() for e in doc.findall('.//dl/dd')])
     return {
-      "quotation": cite.tail,
+      "quotation": cite.text_content(),
       "author": author,
       "source": source,
       "url": url
