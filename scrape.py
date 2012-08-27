@@ -3,6 +3,7 @@
 import re
 import json
 import rdflib
+import networkx
 import urlparse
 import lxml.html
 
@@ -11,6 +12,7 @@ def main():
     for t in terms():
         print t['pref_label']
         saa[t['pref_label']] = t
+    saa = compute_centrality(saa)
     open("saa-glossary.json", "w").write(json.dumps(saa, indent=2))
 
 def terms():
@@ -102,6 +104,26 @@ def citation(cite):
       "source": source,
       "url": url
       }
+
+def compute_centrality(saa):
+    # build a networkx graph of the glossary
+    g = networkx.Graph()
+    for term in saa.values():
+        for broader in term['broader']:
+            g.add_edge(term['pref_label'], broader['pref_label'], type='broader')
+        for narrower in term['narrower']:
+            g.add_edge(term['pref_label'], narrower['pref_label'], type='narrower')
+        for related in term['related']:
+            g.add_edge(term['pref_label'], related['pref_label'], type='related')
+    # calculate centrality
+    centrality = networkx.eigenvector_centrality(g, max_iter=1000)
+
+    # add centrality values to the glossary data structure
+    # not all terms will have a centrality value if they are not connected
+    for term in saa.values():
+        term['eigenvector_centrality'] = centrality.get(term['pref_label'], None)
+
+    return centrality
 
 if __name__ == "__main__":
     main()

@@ -6,16 +6,31 @@
             function setup() {
                 var g = sigma.init($('#sig')[0]);
 
+                g.drawingProperties({
+                  defaultLabelSize: 14,
+                  defaultLabelHoverColor: '#000',
+                  labelThreshold: 6,
+                  defaultEdgeType: 'curve'
+                });
+
                 g.graphProperties({
                   minNodeSize: 1, 
                   maxNodeSize: 10,
+                  minEdgeSize: 1,
+                  maxEdgeSize: 1
                 });
 
+                g.mouseProperties({maxRatio: 32});
+
                 g.addNode('hello', {
-                  label: 'Hello'
+                  label: 'Hello',
+                  x: Math.random(),
+                  y: Math.random()
                 }).addNode('world', {
-                  label: 'World!'
-                }).addEdge('hello_world', 'hello', 'world').draw();
+                  label: 'World!',
+                  x: Math.random(),
+                  y: Math.random()
+              }).addEdge('hello_world', 'hello', 'world', {label: 'foo'}).draw();
             }
 
             $(document).ready(setup);
