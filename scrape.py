@@ -19,11 +19,19 @@ def terms():
         if t: yield t
 
 def term_urls():
-    doc = lxml.html.parse('http://www.archivists.org/glossary/list.asp')
-    for a in doc.xpath('.//a'):
-        href = a.attrib['href']
-        if href.startswith('term_details.asp'):
-            yield urlparse.urljoin("http://www.archivists.org/glossary/", href)
+    for letter in [chr(i) for i in  range(97, 123)]:
+        url = 'http://www2.archivists.org/glossary/terms/' + letter
+        while True:
+            doc = lxml.html.parse(url)
+            for a in doc.xpath('.//a'):
+                href = a.attrib['href']
+                if re.match(r'^/glossary/terms/./.+$', href):
+                    yield urlparse.urljoin("http://www2.archivists.org", href)
+            next_page = doc.xpath('string(.//li[@class="pager-next"]/a/@href)')
+            if next_page:
+                url = urlparse.urljoin("http://www2.archivists.org/", next_page)
+            else:
+                break
 
 def term(url):
     term = {

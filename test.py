@@ -6,7 +6,10 @@ import unittest
 
 class SaaTests(unittest.TestCase):
 
-    def test_term(self):
+    def test_term_urls(self):
+        self.assertTrue(len(list(scrape.term_urls())) > 2000)
+
+    def atest_term(self):
         term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=294")
         self.assertEqual(term['pref_label'], 'arrangement')
         self.assertTrue(term['definition'].startswith('n. ~ 1. The process of organizing materials with respect to their provenance and original order, to protect their context and to achieve physical or intellectual control over the materials.'))
@@ -28,7 +31,7 @@ class SaaTests(unittest.TestCase):
         self.assertEqual(term['distinguish_from'][0]['url'], 'http://www.archivists.org/glossary/term_details.asp?DefinitionKey=283')
 
 
-    def test_alt_label(self):
+    def atest_alt_label(self):
         term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=588")
         self.assertEqual(term['pref_label'], 'central records')
         self.assertEqual(term['definition'], u'n. ~ 1. The files of several organizational units consolidated in one location. \x96 2. The files of several individuals consolidated into a common filing system.')
@@ -36,19 +39,19 @@ class SaaTests(unittest.TestCase):
         self.assertEqual(term['alt_label'][0], 'central files')
         self.assertEqual(term['alt_label'][1], 'centralized files')
 
-    def test_no_term(self):
+    def atest_no_term(self):
         term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=11")
         self.assertEqual(term, None)
         term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=480")
         self.assertEqual(term, None)
 
-    def test_abbreviation(self):
+    def atest_abbreviation(self):
         term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=1907")
         self.assertEqual(term['pref_label'], "American Library Association")
         self.assertEqual(len(term['alt_label']), 1)
         self.assertEqual(term['alt_label'][0], 'ALA')
 
-    def test_another(self):
+    def atest_another(self):
         term = scrape.term("http://www.archivists.org/glossary/term_details.asp?DefinitionKey=535")
         self.assertTrue(term)
         self.assertEqual(term['alt_label'][0], 'phonotape')
