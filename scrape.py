@@ -49,66 +49,53 @@ def term(url):
         'citations': []
         }
     doc = lxml.html.parse(url)
-    term['pref_label'] = doc.find('.//h2').text
-    for p in doc.xpath(".//p[@class='head']"):
-        if p.text.startswith("Definition"):
-            definition = p.getnext().find('p')
-            text = definition.text_content()
-            if text.startswith("(also"):
-                for alt_label in definition.findall('span'):
-                    term['alt_label'].append(alt_label.text_content())
-                html = lxml.html.tostring(definition)
-                html = re.sub("^.+</span>\), ", "", html)
-                definition = lxml.html.fromstring(html)
-                term['definition'] = definition.text_content()
-            elif "abbr.)" in text:
-                m = re.match('^(.+) \((.+), abbr.\)(.+)$', text)
-                if m:
-                    term['alt_label'].append(m.group(2))
-                    term['definition'] = m.group(1) + m.group(3)
-            else:
-                term['definition'] = definition.text_content()
-        if p.text.startswith("Notes"):
-            for note in p.getnext().findall('.//p'):
-                if note.text: term['notes'].append(note.text)
-        if p.text.startswith("Citations"):
-            for cite in p.getnext().findall('.//p'):
-                c = citation(cite)
-                if c: term['citations'].append(c)
+    main = doc.find('.//div/[@id="main"]')
 
-    term['broader'] = syndetic_links(doc, "BT:", url)
-    term['related'] = syndetic_links(doc, "RT:", url)
-    term['distinguish_from'] = syndetic_links(doc, "DF:", url)
-    term['narrower'] = syndetic_links(doc, "NT:", url)
+    term['pref_label'] = main.find('.//h1[@class="title"]').text
 
-    # some pages are just See links to the actual terms
-    if term['definition'] and not term['definition'].startswith('(also'):
-        return term
-    else:
-        return None
+    term['definition'] = main.find('.//div[@class="content"]/p')
+    if term['definition'] == None:
+        return
+
+    term['definition'] = term['definition'].text_content()
+    term['definition'] = re.sub('^\(also.+?\), ', '', term['definition'])
+
+    for e in main.xpath('.//div[@class="content"]//span[@class="sublemma"]'):
+        term['alt_label'].append(e.text)
+    
+    for e in main.xpath(".//div[@class='field-items']//p"):
+        term['notes'].append(e.text)
+
+    for e in main.xpath('.//div[@class="citation"]'):
+        c = citation(e)
+        if c: term['citations'].append(c)
+
+    term['broader'] = syndetic_links(doc, "broader", url)
+    term['related'] = syndetic_links(doc, "related", url)
+    term['distinguish_from'] = syndetic_links(doc, "distinguish", url)
+    term['narrower'] = syndetic_links(doc, "narrower", url)
+
+    return term
 
 def syndetic_links(doc, label, url):
     links = []
-    for td in doc.findall(".//td[@class='syndetic']"):
-        if td.text != label: continue
-        for a in td.getnext().findall('a'):
-            links.append({
-                'pref_label': a.text, 
-                'url': urlparse.urljoin(url, a.attrib['href'])
-                })
+    xpath = ".//div[@class='field field-type-nodereference field-field-" + label + "-term']//a"
+    for a in doc.findall(xpath):
+        links.append({
+            'pref_label': a.text, 
+            'url': urlparse.urljoin(url, a.attrib['href'])
+            })
     return links 
 
 def citation(cite):
     a = cite.find('a')
-    url = urlparse.urljoin('http://www.archivists.org/glossary/', a.attrib['href'])
+    url = urlparse.urljoin('http://www2.archivists.org/', a.attrib['href'])
     doc = lxml.html.parse(url)
-    dt = doc.find('.//dl/dt')
-    if dt == None: return
-    author = dt.text
-    source = ' '.join([e.text_content() for e in doc.findall('.//dl/dd')])
+    e = doc.find('.//div[@class="citation-source-node"]')
+    if e == None: return
+    source = e.find('.//p').text
     return {
       "quotation": cite.text_content(),
-      "author": author,
       "source": source,
       "url": url
       }

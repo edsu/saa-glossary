@@ -45,7 +45,6 @@ will resemble:
       {
         "url": "http://www.archivists.org/glossary/source_cite.asp?SortOrder=220", 
         "source": "Keeping Archives. Australian Society of Archivists, 1987.", 
-        "author": "Pederson, Ann, ed.", 
         "quotation": "Having made sure that new material has been legally transferred to your archives, the next, and vitally important, step is to gain control over it. This initial process is called accessioning."
       }
     ], 
