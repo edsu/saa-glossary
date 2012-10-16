@@ -10,50 +10,107 @@ will resemble:
 
 ```javascript
 {
-  "Encoded Archival Description": {
-    "narrower": [], 
+  "appraisal": {
+    "narrower": [
+      {
+        "url": "http://www2.archivists.org/glossary/terms/c/content-analysis", 
+        "pref_label": "content analysis"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/c/context-analysis", 
+        "pref_label": "context analysis"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/d/documentation-strategy", 
+        "pref_label": "documentation strategy"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/f/functional-analysis", 
+        "pref_label": "functional analysis"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/m/macro-appraisal", 
+        "pref_label": "macro appraisal"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/u/use-analysis", 
+        "pref_label": "use analysis"
+      }
+    ], 
     "related": [
       {
-        "url": "http://www2.archivists.org/glossary/terms/a/archival-description", 
-        "pref_label": "archival description"
+        "url": "http://www2.archivists.org/glossary/terms/c/collection-development", 
+        "pref_label": "collection development"
       }, 
       {
-        "url": "http://www2.archivists.org/glossary/terms/d/descriptive-standard", 
-        "pref_label": "descriptive standard"
+        "url": "http://www2.archivists.org/glossary/terms/f/fat-file-method", 
+        "pref_label": "fat file method"
       }, 
       {
-        "url": "http://www2.archivists.org/glossary/terms/f/finding-aid", 
-        "pref_label": "finding aid"
+        "url": "http://www2.archivists.org/glossary/terms/r/reappraisal", 
+        "pref_label": "reappraisal"
       }, 
       {
-        "url": "http://www2.archivists.org/glossary/terms/m/markup", 
-        "pref_label": "markup"
+        "url": "http://www2.archivists.org/glossary/terms/s/selection", 
+        "pref_label": "selection"
       }, 
       {
-        "url": "http://www2.archivists.org/glossary/terms/s/standard-generalized-markup-language", 
-        "pref_label": "Standard Generalized Markup Language"
+        "url": "http://www2.archivists.org/glossary/terms/v/valuation", 
+        "pref_label": "valuation"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/v/value", 
+        "pref_label": "value"
       }
     ], 
     "broader": [], 
-    "pref_label": "Encoded Archival Description", 
-    "definition": "n. (EAD, abbr.) ~ A standard used to mark up (encode) finding aids that reflects the hierarchical nature of archival collections and that provides a structure for describing the whole of a collection, as well as its components.", 
-    "eigenvector_centrality": 9.964256228732647e-05, 
-    "alt_label": [
-      "EAD"
-    ], 
-    "url": "http://www2.archivists.org/glossary/terms/e/encoded-archival-description", 
+    "pref_label": "appraisal", 
+    "definition": "n. ~ 1. The process of identifying materials offered to an archives that have sufficient value to be accessioned. - 2.  The process of determining the length of time records should be retained, based on legal requirements and on their current and potential usefulness. - 3. The process of determining the market value of an item; monetary appraisal.", 
+    "eigenvector_centrality": 0.0009875135754408087, 
+    "alt_label": [], 
+    "url": "http://www2.archivists.org/glossary/terms/a/appraisal", 
     "notes": [
-      "EAD is defined as a document type definition (DTD) that is compatible with both Standard Generalized Markup Language (SGML) and extensible markup language (XML).  See the related standards "
+      "In an archival context, appraisal", 
+      "Appraisal is distinguished from monetary appraisal, which estimates fair market value.  Appraisal is distinguished from evaluation, which is typically used by records managers to indicate a preliminary assessment of value based on existing retention schedules."
     ], 
-    "distinguish_from": [], 
+    "distinguish_from": [
+      {
+        "url": "http://www2.archivists.org/glossary/terms/e/evaluation", 
+        "pref_label": "evaluation"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/m/monetary-appraisal", 
+        "pref_label": "monetary appraisal"
+      }
+    ], 
     "citations": [
       {
-        "url": "http://www2.archivists.org/glossary/source/feeney-1999", 
-        "source": "Feeney, Kathleen, Retrieval of Archival Finding Aids Using World-Wide-Web Search Engines. ", 
-        "quotation": "\n  \u2020(Feeney 1999, p. 207\u2013208) [EAD] is intended to provide repositories with a means of establishing an effective, accessible, and stable presence for their holdings information.  EAD accommodates variations in the length and content of finding aids within and among repositories, and preserves in electronic form the complex, hierarchically structured descriptive information found in archival repositories and registers, while also enabling the documents to be navigated and searched in ways that their printed counterparts cannot.  "
+        "url": "http://www2.archivists.org/glossary/source/brichford-1977", 
+        "source": "Brichford, Maynard J., ", 
+        "quotation": "\n  \u2020(Brichford 1977, p. 2) The archivists considering the records to be appraised will study their age, volume, and form, and will analyze their functional, evidential, and informational characteristics.  "
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/source/duranti-1998", 
+        "source": "Duranti, Luciana, ", 
+        "quotation": "\n  \u2020(Duranti 1998, p. 177) The principle of provenance, as applied to appraisal, leads us to evaluate records on the basis of the importance of the creator's mandate and functions, and fosters the use of a hierarchical method, a 'top-down' approach, which has proved to be unsatisfactory because it excludes the 'powerless transactions,' which might throw light on the broader social context, from the permanent record of society.  "
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/source/eastwood-2004", 
+        "source": "Eastwood, Terry, Jenkinson's Writings on Some Enduring Archival Themes. ", 
+        "quotation": "\n  \u2020(Eastwood 2004, p. 40) This idea of Jenkinson's [that archivists ought not to be in the business of destroying records] has, as might be expected, almost universal condemnation by archivists who routinely conduct appraisal, often nowadays mandated in legislation where public records are concerned. It may seem that events have passed Jenkinson by, but, in fact, as several archivists inspired by postmodernist thinking have argued, when archivists decide what to save and what to destroy, they begin to be a factor in the determination of what archives are.  "
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/source/ham-1993", 
+        "source": "Ham, F. Gerald, ", 
+        "quotation": "\n  \u2020(Ham 1993, p. 51) There are five analyses that make up the basic tools archivists need in their appraisal kits to identify and select records of enduring value. These are an analysis: of a record's functional characteristics \u2013 who made the record and for what purpose; of the information in the record to determine its significance and quality; of the record in the context of parallel or related documentary sources; of the potential uses that are likely to be made of the record and the physical, legal, and intellectual limitations on access; of the cost of preserving the record weighed against the benefit of retaining the information.  "
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/source/personal-communication", 
+        "source": null, 
+        "quotation": "\n  \u2020(Personal communication, Mark Greene, 28 May 2004) The basis on which appraisal decisions should be made has been the subject of intense professional debate.  Some archival theorists, notably Jenkinson, argue that such decisions should not be made by archivists at all, but only by records creators.  In the United States, Schellenberg believed that appraisal was not only an appropriate archival function but an absolutely necessary one, in the face of increasing masses of documentation in the 20th century.  U.S. archival theory and practice has been rooted in Schellenberg's philosophy and teaching.  "
       }
     ]
-  }, 
+  },
   ...
 }
 ```
