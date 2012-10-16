@@ -5,52 +5,53 @@ saa-glossary
 
 This project provides a scraper that crawls the [SAA Glossary of Archival and Records Terminology](http://www.archivists.org/glossary/) and makes the resulting thesaurus data available as JSON and (soon) SKOS RDF.
 
-The resulting JSON is a big dictionary where the glossary term is the key, which
+The resulting JSON is a big dictionary where each glossary term is a key, which
 will resemble:
 
 ```javascript
 {
-  "accession": {
-    "url": "http://www.archivists.org/glossary/term_details.asp?DefinitionKey=115", 
-    "pref_label": "accession"
-    "alt_label": [], 
-    "definition": "n. ~ 1. Materials physically and legally transferred to a repository as a unit at a single time; an acquisition.\r\n\r\n", 
+  "Encoded Archival Description": {
+    "narrower": [], 
     "related": [
       {
-        "url": "http://www.archivists.org/glossary/term_details.asp?DefinitionKey=275", 
-        "pref_label": "accretion"
+        "url": "http://www2.archivists.org/glossary/terms/a/archival-description", 
+        "pref_label": "archival description"
       }, 
       {
-        "url": "http://www.archivists.org/glossary/term_details.asp?DefinitionKey=492", 
-        "pref_label": "accrual"
+        "url": "http://www2.archivists.org/glossary/terms/d/descriptive-standard", 
+        "pref_label": "descriptive standard"
       }, 
       {
-        "url": "http://www.archivists.org/glossary/term_details.asp?DefinitionKey=655", 
-        "pref_label": "deaccessioning"
+        "url": "http://www2.archivists.org/glossary/terms/f/finding-aid", 
+        "pref_label": "finding aid"
       }, 
       {
-        "url": "http://www.archivists.org/glossary/term_details.asp?DefinitionKey=1606", 
-        "pref_label": "registration"
+        "url": "http://www2.archivists.org/glossary/terms/m/markup", 
+        "pref_label": "markup"
+      }, 
+      {
+        "url": "http://www2.archivists.org/glossary/terms/s/standard-generalized-markup-language", 
+        "pref_label": "Standard Generalized Markup Language"
       }
     ], 
-    "narrower": [],
     "broader": [], 
-    "distinguish_from": [
-      {
-        "url": "http://www.archivists.org/glossary/term_details.asp?DefinitionKey=114", 
-        "pref_label": "acquisition"
-      }
+    "pref_label": "Encoded Archival Description", 
+    "definition": "n. (EAD, abbr.) ~ A standard used to mark up (encode) finding aids that reflects the hierarchical nature of archival collections and that provides a structure for describing the whole of a collection, as well as its components.", 
+    "eigenvector_centrality": 9.964256228732647e-05, 
+    "alt_label": [
+      "EAD"
     ], 
+    "url": "http://www2.archivists.org/glossary/terms/e/encoded-archival-description", 
+    "notes": [
+      "EAD is defined as a document type definition (DTD) that is compatible with both Standard Generalized Markup Language (SGML) and extensible markup language (XML).  See the related standards "
+    ], 
+    "distinguish_from": [], 
     "citations": [
       {
-        "url": "http://www.archivists.org/glossary/source_cite.asp?SortOrder=220", 
-        "source": "Keeping Archives. Australian Society of Archivists, 1987.", 
-        "quotation": "Having made sure that new material has been legally transferred to your archives, the next, and vitally important, step is to gain control over it. This initial process is called accessioning."
+        "url": "http://www2.archivists.org/glossary/source/feeney-1999", 
+        "source": "Feeney, Kathleen, Retrieval of Archival Finding Aids Using World-Wide-Web Search Engines. ", 
+        "quotation": "\n  \u2020(Feeney 1999, p. 207\u2013208) [EAD] is intended to provide repositories with a means of establishing an effective, accessible, and stable presence for their holdings information.  EAD accommodates variations in the length and content of finding aids within and among repositories, and preserves in electronic form the complex, hierarchically structured descriptive information found in archival repositories and registers, while also enabling the documents to be navigated and searched in ways that their printed counterparts cannot.  "
       }
-    ], 
-    "notes": [
-      "The materials may be acquired by gift, bequest, purchase, transfer, retention schedule, or statute. An accession may be part of a larger, existing collection.  An accession added to existing collections is sometimes called an accretion or an accrual.\r\n\r\n", 
-      "'Accession' should be distinguished from 'acquisition'. As nouns, they are synonymous.  However, the verb 'accession' goes far beyond the sense of 'acquire', connoting the initial steps of processing by establishing rudimentary physical and intellectual control over the materials by entering brief information about those materials in a register, database, or other log of the repository's holdings."
     ]
   }, 
   ...
