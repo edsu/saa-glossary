@@ -12,7 +12,7 @@ def main():
     for t in terms():
         print t['pref_label']
         saa[t['pref_label']] = t
-    saa = compute_centrality(saa)
+    compute_centrality(saa)
     open("saa-glossary.json", "w").write(json.dumps(saa, indent=2))
 
 def terms():
@@ -101,6 +101,8 @@ def citation(cite):
       }
 
 def compute_centrality(saa):
+    """adds eigenvector centrality measure to the glossary that is passed in
+    """
     # build a networkx graph of the glossary
     g = networkx.Graph()
     for term in saa.values():
@@ -118,7 +120,7 @@ def compute_centrality(saa):
     for term in saa.values():
         term['eigenvector_centrality'] = centrality.get(term['pref_label'], None)
 
-    return centrality
+    return saa 
 
 if __name__ == "__main__":
     main()
