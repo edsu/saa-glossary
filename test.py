@@ -50,5 +50,18 @@ class SaaTests(unittest.TestCase):
         self.assertTrue(term)
         self.assertEqual(term['alt_label'][0], 'phonotape')
 
+    def test_alt_labels(self):
+        term = scrape.term("http://www2.archivists.org/glossary/terms/p/provenance")
+        print term["alt_label"]
+        self.assertEqual(len(term["alt_label"]), 1)
+        self.assertEqual(term["alt_label"][0], "provenancial")
+
+    def test_note(self):
+        term = scrape.term("http://www2.archivists.org/glossary/terms/r/reversibility")
+        self.assertEqual(term["notes"][0], "Sometimes referred to as the principle of reversibility.  Encapsulation is considered reversible, whereas lamination is not.")
+
+
+
+
 if __name__ == "__main__":
     unittest.main()

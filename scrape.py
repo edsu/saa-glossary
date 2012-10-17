@@ -60,11 +60,11 @@ def term(url):
     term['definition'] = term['definition'].text_content()
     term['definition'] = re.sub('^\(also.+?\), ', '', term['definition'])
 
-    for e in main.xpath('.//div[@class="content"]//span[@class="sublemma"]'):
+    for e in main.xpath('.//div[@class="node odd full-node node-type-glossary_term"]/div/p/span[@class="sublemma"]'):
         term['alt_label'].append(e.text)
     
     for e in main.xpath(".//div[@class='field-items']//p"):
-        term['notes'].append(e.text)
+        term['notes'].append(e.text_content())
 
     for e in main.xpath('.//div[@class="citation"]'):
         c = citation(e)

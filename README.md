@@ -122,3 +122,8 @@ If you want to update the data you'll need to:
 1. ./scrape.py
 1. make some tea
 1. cat saa-glossary.json
+
+And if you want to generate the SKOS RDF:
+
+1. ./skos.py
+1. cat saa-glossary.rdf
