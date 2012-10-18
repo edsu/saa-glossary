@@ -3,10 +3,32 @@ saa-glossary
 
 [![Build Status](https://secure.travis-ci.org/edsu/saa-glossary.png)](http://travis-ci.org/edsu/saa-glossary)
 
-This project provides a scraper that crawls the [SAA Glossary of Archival and Records Terminology](http://www.archivists.org/glossary/) and makes the resulting thesaurus data available as JSON and (soon) SKOS RDF.
+This project provides a scraper that crawls the [SAA Glossary of Archival and Records Terminology](http://www.archivists.org/glossary/) and makes the resulting thesaurus data available as JSON and SKOS RDF.
 
-The resulting JSON is a big dictionary where each glossary term is a key, which
-will resemble:
+Here's what the SKOS looks like for the concept appraisal:
+
+```
+<http://www2.archivists.org/glossary/terms/a/appraisal> a skos:Concept;
+    skos:definition "n. ~ 1. The process of identifying materials offered to an archives that have sufficient value to be accessioned. - 2.  The process of determining the length of time records should be retained, based on legal requirements and on their current and potential usefulness. - 3. The process of determining the market value of an item; monetary appraisal.";
+    skos:narrower <http://www2.archivists.org/glossary/terms/c/content-analysis>,
+        <http://www2.archivists.org/glossary/terms/c/context-analysis>,
+        <http://www2.archivists.org/glossary/terms/d/documentation-strategy>,
+        <http://www2.archivists.org/glossary/terms/f/functional-analysis>,
+        <http://www2.archivists.org/glossary/terms/m/macro-appraisal>,
+        <http://www2.archivists.org/glossary/terms/u/use-analysis>;
+    skos:prefLabel "appraisal";
+    skos:related <http://www2.archivists.org/glossary/terms/c/collection-development>,
+        <http://www2.archivists.org/glossary/terms/f/fat-file-method>,
+        <http://www2.archivists.org/glossary/terms/r/reappraisal>,
+        <http://www2.archivists.org/glossary/terms/s/selection>,
+        <http://www2.archivists.org/glossary/terms/v/valuation>,
+        <http://www2.archivists.org/glossary/terms/v/value>;
+    skos:scopeNote "Appraisal is distinguished from monetary appraisal, which estimates fair market value.  Appraisal is distinguished from evaluation, which is typically used by records managers to indicate a preliminary assessment of value based on existing retention schedules.",
+        """In an archival context, appraisal is the process of determining whether records and other materials have permanent (archival) value.  Appraisal may be done at the collection, creator, series, file, or item level.  Appraisal can take place prior to donation and prior to physical transfer, at or after accessioning.  The basis of appraisal decisions may include a number of factors, including the records' provenance and content, their authenticity and reliability, their order and completeness, their condition and costs to preserve them, and their intrinsic value.  Appraisal often takes place within a larger institutional collecting policy and mission statement.  """ .
+```
+
+And the resulting JSON is a big dictionary where each glossary term is a key, 
+which will resemble:
 
 ```javascript
 {
@@ -70,7 +92,7 @@ will resemble:
     "alt_label": [], 
     "url": "http://www2.archivists.org/glossary/terms/a/appraisal", 
     "notes": [
-      "In an archival context, appraisal", 
+      "In an archival context, appraisal is the process of determining whether records and other materials have permanent (archival) value.  Appraisal may be done at the collection, creator, series, file, or item level.  Appraisal can take place prior to donation and prior to physical transfer, at or after accessioning.\nThe basis of appraisal decisions may include a number of factors, including the records' provenance and content, their authenticity and reliability, their order and completeness, their condition and costs to preserve them, and their intrinsic value.  Appraisal often takes place within a larger institutional collecting policy and mission statement.  ", 
       "Appraisal is distinguished from monetary appraisal, which estimates fair market value.  Appraisal is distinguished from evaluation, which is typically used by records managers to indicate a preliminary assessment of value based on existing retention schedules."
     ], 
     "distinguish_from": [
@@ -110,7 +132,7 @@ will resemble:
         "quotation": "\n  \u2020(Personal communication, Mark Greene, 28 May 2004) The basis on which appraisal decisions should be made has been the subject of intense professional debate.  Some archival theorists, notably Jenkinson, argue that such decisions should not be made by archivists at all, but only by records creators.  In the United States, Schellenberg believed that appraisal was not only an appropriate archival function but an absolutely necessary one, in the face of increasing masses of documentation in the 20th century.  U.S. archival theory and practice has been rooted in Schellenberg's philosophy and teaching.  "
       }
     ]
-  },
+  }, 
   ...
 }
 ```
@@ -123,7 +145,7 @@ If you want to update the data you'll need to:
 1. make some tea
 1. cat saa-glossary.json
 
-And if you want to generate the SKOS RDF:
+And if you want to re-generate the SKOS RDF:
 
 1. ./skos.py
 1. cat saa-glossary.rdf
