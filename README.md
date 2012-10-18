@@ -5,7 +5,10 @@ saa-glossary
 
 This project provides a scraper that crawls the [SAA Glossary of Archival and Records Terminology](http://www2.archivists.org/glossary) and makes the resulting thesaurus data available as JSON and SKOS RDF.
 
-Here's what the SKOS looks like for the concept appraisal:
+SKOS
+----
+
+Here's what the SKOS looks like for the concept *appraisal*:
 
 ```
 <http://www2.archivists.org/glossary/terms/a/appraisal> a skos:Concept;
@@ -27,8 +30,11 @@ Here's what the SKOS looks like for the concept appraisal:
         """In an archival context, appraisal is the process of determining whether records and other materials have permanent (archival) value.  Appraisal may be done at the collection, creator, series, file, or item level.  Appraisal can take place prior to donation and prior to physical transfer, at or after accessioning.  The basis of appraisal decisions may include a number of factors, including the records' provenance and content, their authenticity and reliability, their order and completeness, their condition and costs to preserve them, and their intrinsic value.  Appraisal often takes place within a larger institutional collecting policy and mission statement.  """ .
 ```
 
-And the resulting JSON is a big dictionary where each glossary term is a key, 
-which will resemble:
+JSON
+----
+
+The resulting JSON is a big dictionary where each glossary term is a key. Here
+is what the term *appraisal* looks like:
 
 ```javascript
 {
@@ -109,27 +115,27 @@ which will resemble:
       {
         "url": "http://www2.archivists.org/glossary/source/brichford-1977", 
         "source": "Brichford, Maynard J., ", 
-        "quotation": "\n  \u2020(Brichford 1977, p. 2) The archivists considering the records to be appraised will study their age, volume, and form, and will analyze their functional, evidential, and informational characteristics.  "
+        "quotation": "\u2020(Brichford 1977, p. 2) The archivists considering the records to be appraised will study their age, volume, and form, and will analyze their functional, evidential, and informational characteristics.  "
       }, 
       {
         "url": "http://www2.archivists.org/glossary/source/duranti-1998", 
         "source": "Duranti, Luciana, ", 
-        "quotation": "\n  \u2020(Duranti 1998, p. 177) The principle of provenance, as applied to appraisal, leads us to evaluate records on the basis of the importance of the creator's mandate and functions, and fosters the use of a hierarchical method, a 'top-down' approach, which has proved to be unsatisfactory because it excludes the 'powerless transactions,' which might throw light on the broader social context, from the permanent record of society.  "
+        "quotation": "\u2020(Duranti 1998, p. 177) The principle of provenance, as applied to appraisal, leads us to evaluate records on the basis of the importance of the creator's mandate and functions, and fosters the use of a hierarchical method, a 'top-down' approach, which has proved to be unsatisfactory because it excludes the 'powerless transactions,' which might throw light on the broader social context, from the permanent record of society.  "
       }, 
       {
         "url": "http://www2.archivists.org/glossary/source/eastwood-2004", 
         "source": "Eastwood, Terry, Jenkinson's Writings on Some Enduring Archival Themes. ", 
-        "quotation": "\n  \u2020(Eastwood 2004, p. 40) This idea of Jenkinson's [that archivists ought not to be in the business of destroying records] has, as might be expected, almost universal condemnation by archivists who routinely conduct appraisal, often nowadays mandated in legislation where public records are concerned. It may seem that events have passed Jenkinson by, but, in fact, as several archivists inspired by postmodernist thinking have argued, when archivists decide what to save and what to destroy, they begin to be a factor in the determination of what archives are.  "
+        "quotation": "\u2020(Eastwood 2004, p. 40) This idea of Jenkinson's [that archivists ought not to be in the business of destroying records] has, as might be expected, almost universal condemnation by archivists who routinely conduct appraisal, often nowadays mandated in legislation where public records are concerned. It may seem that events have passed Jenkinson by, but, in fact, as several archivists inspired by postmodernist thinking have argued, when archivists decide what to save and what to destroy, they begin to be a factor in the determination of what archives are.  "
       }, 
       {
         "url": "http://www2.archivists.org/glossary/source/ham-1993", 
         "source": "Ham, F. Gerald, ", 
-        "quotation": "\n  \u2020(Ham 1993, p. 51) There are five analyses that make up the basic tools archivists need in their appraisal kits to identify and select records of enduring value. These are an analysis: of a record's functional characteristics \u2013 who made the record and for what purpose; of the information in the record to determine its significance and quality; of the record in the context of parallel or related documentary sources; of the potential uses that are likely to be made of the record and the physical, legal, and intellectual limitations on access; of the cost of preserving the record weighed against the benefit of retaining the information.  "
+        "quotation": "\u2020(Ham 1993, p. 51) There are five analyses that make up the basic tools archivists need in their appraisal kits to identify and select records of enduring value. These are an analysis: of a record's functional characteristics \u2013 who made the record and for what purpose; of the information in the record to determine its significance and quality; of the record in the context of parallel or related documentary sources; of the potential uses that are likely to be made of the record and the physical, legal, and intellectual limitations on access; of the cost of preserving the record weighed against the benefit of retaining the information.  "
       }, 
       {
         "url": "http://www2.archivists.org/glossary/source/personal-communication", 
         "source": null, 
-        "quotation": "\n  \u2020(Personal communication, Mark Greene, 28 May 2004) The basis on which appraisal decisions should be made has been the subject of intense professional debate.  Some archival theorists, notably Jenkinson, argue that such decisions should not be made by archivists at all, but only by records creators.  In the United States, Schellenberg believed that appraisal was not only an appropriate archival function but an absolutely necessary one, in the face of increasing masses of documentation in the 20th century.  U.S. archival theory and practice has been rooted in Schellenberg's philosophy and teaching.  "
+        "quotation": "\u2020(Personal communication, Mark Greene, 28 May 2004) The basis on which appraisal decisions should be made has been the subject of intense professional debate.  Some archival theorists, notably Jenkinson, argue that such decisions should not be made by archivists at all, but only by records creators.  In the United States, Schellenberg believed that appraisal was not only an appropriate archival function but an absolutely necessary one, in the face of increasing masses of documentation in the 20th century.  U.S. archival theory and practice has been rooted in Schellenberg's philosophy and teaching.  "
       }
     ]
   }, 
