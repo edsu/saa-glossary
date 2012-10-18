@@ -95,7 +95,7 @@ def citation(cite):
     if e == None: return
     source = e.find('.//p').text
     return {
-      "quotation": cite.text_content(),
+      "quotation": cite.text_content().strip(),
       "source": source,
       "url": url
       }
