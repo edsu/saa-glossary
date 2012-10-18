@@ -9,6 +9,7 @@ Here's what the SKOS looks like for the concept appraisal:
 
 ```
 <http://www2.archivists.org/glossary/terms/a/appraisal> a skos:Concept;
+    skos:prefLabel "appraisal";
     skos:definition "n. ~ 1. The process of identifying materials offered to an archives that have sufficient value to be accessioned. - 2.  The process of determining the length of time records should be retained, based on legal requirements and on their current and potential usefulness. - 3. The process of determining the market value of an item; monetary appraisal.";
     skos:narrower <http://www2.archivists.org/glossary/terms/c/content-analysis>,
         <http://www2.archivists.org/glossary/terms/c/context-analysis>,
@@ -16,7 +17,6 @@ Here's what the SKOS looks like for the concept appraisal:
         <http://www2.archivists.org/glossary/terms/f/functional-analysis>,
         <http://www2.archivists.org/glossary/terms/m/macro-appraisal>,
         <http://www2.archivists.org/glossary/terms/u/use-analysis>;
-    skos:prefLabel "appraisal";
     skos:related <http://www2.archivists.org/glossary/terms/c/collection-development>,
         <http://www2.archivists.org/glossary/terms/f/fat-file-method>,
         <http://www2.archivists.org/glossary/terms/r/reappraisal>,
