@@ -3,7 +3,7 @@ saa-glossary
 
 [![Build Status](https://secure.travis-ci.org/edsu/saa-glossary.png)](http://travis-ci.org/edsu/saa-glossary)
 
-This project provides a scraper that crawls the [SAA Glossary of Archival and Records Terminology](http://www.archivists.org/glossary/) and makes the resulting thesaurus data available as JSON and SKOS RDF.
+This project provides a scraper that crawls the [SAA Glossary of Archival and Records Terminology](http://www2.archivists.org/glossary) and makes the resulting thesaurus data available as JSON and SKOS RDF.
 
 Here's what the SKOS looks like for the concept appraisal:
 
