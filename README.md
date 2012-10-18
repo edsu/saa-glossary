@@ -143,7 +143,12 @@ is what the term *appraisal* looks like:
 }
 ```
 
-If you want to update the data you'll need to:
+INSTALL
+-------
+
+The idea is that you can use the data as is here in GitHub, and I will 
+periodically re-run the crawler. If you want to update the data yourself
+follow these steps:
 
 1. sudo apt-get install pip
 1. pip install -r requirements.txt
