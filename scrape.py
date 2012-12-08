@@ -93,7 +93,7 @@ def citation(cite):
     doc = lxml.html.parse(url)
     e = doc.find('.//div[@class="citation-source-node"]')
     if e == None: return
-    source = e.find('.//p').text
+    source = e.find('.//p').text_content()
     return {
       "quotation": cite.text_content().strip(),
       "source": source,

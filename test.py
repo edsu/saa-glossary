@@ -16,7 +16,7 @@ class SaaTests(unittest.TestCase):
         self.assertEqual(len(term['scope_notes']), 3)
         self.assertEqual(term['scope_notes'][2], "Arrangement is distinguished from classification, which places materials in an order established by someone other than the creator.")
         self.assertEqual(len(term['citations']), 2)
-        self.assertTrue(term['citations'][0]['source'].startswith(u'Holmes, Oliver'))
+        self.assertEqual(term['citations'][0]['source'], u'Holmes, Oliver W., Archival Arrangement \u2013 Five Different Operations at Five Different Levels. Modern Archives Reader: Basic Readings on Archival Theory and Practice. National Archives and Records Service, 1984, p. 162\u2013180.')
 
         self.assertEqual(len(term['broader']), 1)
         self.assertEqual(term['broader'][0]['pref_label'], 'processing')
