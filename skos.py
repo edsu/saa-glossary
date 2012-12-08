@@ -24,7 +24,7 @@ for pref_label in glossary.keys():
     for r in term["related"]:
         graph.add((uri, skos.related, rdflib.URIRef(r["url"])))
 
-    for n in term["notes"]:
+    for n in term["scope_notes"]:
         graph.add((uri, skos.scopeNote, rdflib.Literal(n)))
 
 graph.bind("skos", skos)

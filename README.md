@@ -97,7 +97,7 @@ is what the term *appraisal* looks like:
     "eigenvector_centrality": 0.0009875135754408087, 
     "alt_label": [], 
     "url": "http://www2.archivists.org/glossary/terms/a/appraisal", 
-    "notes": [
+    "scope_notes": [
       "In an archival context, appraisal is the process of determining whether records and other materials have permanent (archival) value.  Appraisal may be done at the collection, creator, series, file, or item level.  Appraisal can take place prior to donation and prior to physical transfer, at or after accessioning.\nThe basis of appraisal decisions may include a number of factors, including the records' provenance and content, their authenticity and reliability, their order and completeness, their condition and costs to preserve them, and their intrinsic value.  Appraisal often takes place within a larger institutional collecting policy and mission statement.  ", 
       "Appraisal is distinguished from monetary appraisal, which estimates fair market value.  Appraisal is distinguished from evaluation, which is typically used by records managers to indicate a preliminary assessment of value based on existing retention schedules."
     ], 

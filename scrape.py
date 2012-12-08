@@ -45,7 +45,7 @@ def term(url):
         'narrower': [],
         'related': [],
         'distinguish_from': [],
-        'notes': [],
+        'scope_notes': [],
         'citations': []
         }
     doc = lxml.html.parse(url)
@@ -64,7 +64,7 @@ def term(url):
         term['alt_label'].append(e.text)
     
     for e in main.xpath(".//div[@class='field-items']//p"):
-        term['notes'].append(e.text_content())
+        term['scope_notes'].append(e.text_content())
 
     for e in main.xpath('.//div[@class="citation"]'):
         c = citation(e)
