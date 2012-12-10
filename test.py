@@ -13,10 +13,10 @@ class SaaTests(unittest.TestCase):
         term = scrape.term("http://www2.archivists.org/glossary/terms/a/arrangement")
         self.assertEqual(term['pref_label'], 'arrangement')
         self.assertTrue(term['definition'].startswith('n. ~ 1. The process of organizing materials with respect to their provenance and original order, to protect their context and to achieve physical or intellectual control over the materials.'))
-        self.assertEqual(len(term['notes']), 3)
-        self.assertEqual(term['notes'][2], "Arrangement is distinguished from classification, which places materials in an order established by someone other than the creator.")
+        self.assertEqual(len(term['scope_notes']), 3)
+        self.assertEqual(term['scope_notes'][2], "Arrangement is distinguished from classification, which places materials in an order established by someone other than the creator.")
         self.assertEqual(len(term['citations']), 2)
-        self.assertTrue(term['citations'][0]['source'].startswith(u'Holmes, Oliver'))
+        self.assertEqual(term['citations'][0]['source'], u'Holmes, Oliver W., Archival Arrangement \u2013 Five Different Operations at Five Different Levels. Modern Archives Reader: Basic Readings on Archival Theory and Practice. National Archives and Records Service, 1984, p. 162\u2013180.')
 
         self.assertEqual(len(term['broader']), 1)
         self.assertEqual(term['broader'][0]['pref_label'], 'processing')
@@ -56,9 +56,9 @@ class SaaTests(unittest.TestCase):
         self.assertEqual(len(term["alt_label"]), 1)
         self.assertEqual(term["alt_label"][0], "provenancial")
 
-    def test_note(self):
+    def test_scope_note(self):
         term = scrape.term("http://www2.archivists.org/glossary/terms/r/reversibility")
-        self.assertEqual(term["notes"][0], "Sometimes referred to as the principle of reversibility.  Encapsulation is considered reversible, whereas lamination is not.")
+        self.assertEqual(term["scope_notes"][0], "Sometimes referred to as the principle of reversibility.  Encapsulation is considered reversible, whereas lamination is not.")
 
 
 
