@@ -2,18 +2,45 @@
 
 import re
 import json
-import rdflib
-import networkx
 import urlparse
 import lxml.html
 
 def main():
-    saa = {}
+    # set up the json-ld
+    g = {
+        "@id": "http://www2.archivists.org/glossary/terms/",
+        "@graph": [{
+            "@id": "http://www2.archivists.org/glossary/terms/",
+            "@type": "ConceptScheme",
+            "title": "A Glossary of Archival and Records Terminology"
+        }],
+        "@context": {
+            "@vocab": "http://www.w3.org/2004/02/skos/core#",
+            "title": "http://purl.org/dc/terms/title",
+            "mads": "http://www.loc.gov/mads/rdf/v1#",
+            "citation": "mads:hasSource",
+            "source": "mads:citationSource",
+            "quotation": "mads:citationNote",
+            "status": "mads:citationStatus",
+            "distinguish": "http://www2.archivists.org/glossary#distinguish"
+        }
+    }
+
+    # scrape it!
+    label_uris = {}
     for t in terms():
-        print t['pref_label']
-        saa[t['pref_label']] = t
-    compute_centrality(saa)
-    open("saa-glossary.json", "w").write(json.dumps(saa, indent=2))
+        print t['prefLabel']
+        label_uris[t['prefLabel']] = t['@id']
+        g["@graph"].append(t)
+
+    # remove empty lists
+    for concept in g['@graph']:
+        for p in concept.keys():
+            if type(concept[p]) == list and len(concept[p]) == 0:
+                del concept[p]
+
+    # all done
+    open("saa-glossary.json", "w").write(json.dumps(g, indent=2))
 
 def terms():
     for url in term_urls():
@@ -37,21 +64,22 @@ def term_urls():
 
 def term(url):
     term = {
-        'url': url, 
-        'pref_label': None, 
+        '@id': url, 
+        '@type': 'Concept',
+        'prefLabel': None, 
         'definition': None,
-        'alt_label': [], 
+        'altLabel': [], 
         'broader': [],
         'narrower': [],
         'related': [],
-        'distinguish_from': [],
-        'scope_notes': [],
-        'citations': []
-        }
+        'distinguish': [],
+        'scopeNote': [],
+        'citation': []
+    }
     doc = lxml.html.parse(url)
     main = doc.find('.//div/[@id="main"]')
 
-    term['pref_label'] = main.find('.//h1[@class="title"]').text
+    term['prefLabel'] = main.find('.//h1[@class="title"]').text
 
     term['definition'] = main.find('.//div[@class="content"]/p')
     if term['definition'] == None:
@@ -61,18 +89,18 @@ def term(url):
     term['definition'] = re.sub('^\(also.+?\), ', '', term['definition'])
 
     for e in main.xpath('.//div[@class="node odd full-node node-type-glossary_term"]/div/p/span[@class="sublemma"]'):
-        term['alt_label'].append(e.text)
+        term['altLabel'].append(e.text)
     
     for e in main.xpath(".//div[@class='field-items']//p"):
-        term['scope_notes'].append(e.text_content())
+        term['scopeNote'].append(e.text_content())
 
     for e in main.xpath('.//div[@class="citation"]'):
         c = citation(e)
-        if c: term['citations'].append(c)
+        if c: term['citation'].append(c)
 
     term['broader'] = syndetic_links(doc, "broader", url)
     term['related'] = syndetic_links(doc, "related", url)
-    term['distinguish_from'] = syndetic_links(doc, "distinguish", url)
+    term['distinguish'] = syndetic_links(doc, "distinguish", url)
     term['narrower'] = syndetic_links(doc, "narrower", url)
 
     return term
@@ -82,9 +110,9 @@ def syndetic_links(doc, label, url):
     xpath = ".//div[@class='field field-type-nodereference field-field-" + label + "-term']//a"
     for a in doc.findall(xpath):
         links.append({
-            'pref_label': a.text, 
-            'url': urlparse.urljoin(url, a.attrib['href'])
-            })
+            'prefLabel': a.text, 
+            '@id': urlparse.urljoin(url, a.attrib['href'])
+        })
     return links 
 
 def citation(cite):
@@ -97,30 +125,8 @@ def citation(cite):
     return {
       "quotation": cite.text_content().strip(),
       "source": source,
-      "url": url
-      }
-
-def compute_centrality(saa):
-    """adds eigenvector centrality measure to the glossary that is passed in
-    """
-    # build a networkx graph of the glossary
-    g = networkx.Graph()
-    for term in saa.values():
-        for broader in term['broader']:
-            g.add_edge(term['pref_label'], broader['pref_label'], type='broader')
-        for narrower in term['narrower']:
-            g.add_edge(term['pref_label'], narrower['pref_label'], type='narrower')
-        for related in term['related']:
-            g.add_edge(term['pref_label'], related['pref_label'], type='related')
-    # calculate centrality
-    centrality = networkx.eigenvector_centrality(g, max_iter=1000)
-
-    # add centrality values to the glossary data structure
-    # not all terms will have a centrality value if they are not connected
-    for term in saa.values():
-        term['eigenvector_centrality'] = centrality.get(term['pref_label'], None)
-
-    return saa 
+      "@id": url
+    }
 
 if __name__ == "__main__":
     main()
